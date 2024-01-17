@@ -3,6 +3,7 @@
     <input v-model="characterName" @input="fetchCharacterImage" class="search-input" placeholder="Buscar personaje" />
     <div v-if="characterData" class="character-info">
       <p>{{ characterData.name }}</p>
+      <p>Casa: {{ characterData.house }}</p>
       <img :src="characterData.image" alt="Imagen del personaje" class="character-image" />
     </div>
     <p v-if="error" class="error-message">{{ error }}</p>
@@ -48,6 +49,7 @@ export default {
 };
 </script>
 
+
 <style scoped>
 .search-input {
   padding: 8px;
@@ -55,7 +57,7 @@ export default {
   font-size: 16px;
   border: 1px solid #ccc;
   border-radius: 4px;
-  width: 300px; /* Ajusta según tus preferencias */
+  width: 300px;
 }
 
 .character-info {
@@ -69,7 +71,7 @@ export default {
 
 .character-image {
   width: 100%;
-  max-width: 300px; /* Ajusta según tus preferencias */
+  max-width: 300px;
   height: auto;
   border-radius: 4px;
 }
