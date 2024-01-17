@@ -1,11 +1,11 @@
 <template>
   <div>
-    <input v-model="characterName" @input="fetchCharacterImage" placeholder="Nombre del personaje" />
-    <div v-if="characterData">
+    <input v-model="characterName" @input="fetchCharacterImage" class="search-input" placeholder="Buscar personaje" />
+    <div v-if="characterData" class="character-info">
       <p>{{ characterData.name }}</p>
-      <img :src="characterData.image" alt="Imagen del personaje" />
+      <img :src="characterData.image" alt="Imagen del personaje" class="character-image" />
     </div>
-    <p v-if="error">{{ error }}</p>
+    <p v-if="error" class="error-message">{{ error }}</p>
   </div>
 </template>
 
@@ -25,24 +25,23 @@ export default {
         const data = await response.json();
 
         if (this.characterName.trim() === '') {
-          this.characterData = null; // Limpiar los datos del personaje si el nombre está vacío
-          this.error = ''; // Limpiar el mensaje de error
+          this.characterData = null;
+          this.error = '';
           return;
         }
 
-        // Encuentra el objeto correspondiente al personaje ingresado
         const character = data.find(item => item.name.toLowerCase().includes(this.characterName.toLowerCase()));
 
         if (character) {
           this.characterData = character;
-          this.error = ''; // Limpia el mensaje de error si se encuentra el personaje
+          this.error = '';
         } else {
-          this.characterData = null; // Limpia los datos del personaje si no se encuentra
-          this.error = 'Personaje no encontrado'; // Mensaje de error
+          this.characterData = null;
+          this.error = 'Personaje no encontrado';
         }
       } catch (error) {
-        this.characterData = null; // Limpia los datos del personaje en caso de error
-        this.error = 'Error al obtener la imagen del personaje'; // Mensaje de error
+        this.characterData = null;
+        this.error = 'Error al obtener la imagen del personaje';
       }
     },
   },
@@ -50,8 +49,33 @@ export default {
 </script>
 
 <style scoped>
-.container{
-  background-color: #42b983;
+.search-input {
+  padding: 8px;
+  margin-bottom: 16px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  width: 300px;
 }
 
+.character-info {
+  margin-top: 16px;
+}
+
+.character-info p {
+  font-size: 18px;
+  margin-bottom: 8px;
+}
+
+.character-image {
+  width: 100%;
+  max-width: 300px;c
+  height: auto;
+  border-radius: 4px;
+}
+
+.error-message {
+  color: red;
+  margin-top: 8px;
+}
 </style>
