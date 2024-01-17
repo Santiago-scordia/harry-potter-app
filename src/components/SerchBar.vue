@@ -55,7 +55,7 @@ export default {
   font-size: 16px;
   border: 1px solid #ccc;
   border-radius: 4px;
-  width: 300px;
+  width: 300px; /* Ajusta según tus preferencias */
 }
 
 .character-info {
@@ -69,7 +69,7 @@ export default {
 
 .character-image {
   width: 100%;
-  max-width: 300px;c
+  max-width: 300px; /* Ajusta según tus preferencias */
   height: auto;
   border-radius: 4px;
 }
