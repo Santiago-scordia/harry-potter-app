@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div>
     <input v-model="characterName" @input="fetchCharacterImage" placeholder="Nombre del personaje" />
     <div v-if="characterData">
       <p>{{ characterData.name }}</p>
@@ -23,6 +23,12 @@ export default {
       try {
         const response = await fetch(`https://hp-api.onrender.com/api/characters`);
         const data = await response.json();
+
+        if (this.characterName.trim() === '') {
+          this.characterData = null; // Limpiar los datos del personaje si el nombre está vacío
+          this.error = ''; // Limpiar el mensaje de error
+          return;
+        }
 
         // Encuentra el objeto correspondiente al personaje ingresado
         const character = data.find(item => item.name.toLowerCase().includes(this.characterName.toLowerCase()));
