@@ -4,6 +4,7 @@
     <div v-if="characterData" class="character-info">
       <p>{{ characterData.name }}</p>
       <p>Casa: {{ characterData.house }}</p>
+      <p>Edad: {{ 2023 - characterData.yearOfBirth }}</p>
       <img :src="characterData.image" alt="Imagen del personaje" class="character-image" />
     </div>
     <p v-if="error" class="error-message">{{ error }}</p>
