@@ -1,11 +1,12 @@
 <template>
   <div>
+    <img src="../assets/logo.png">
     <h1>Buscador de personajes</h1>
-    <input v-model="characterName" @input="fetchCharacterImage" class="search-input" placeholder="Buscar personaje" />
+    <input v-model="characterName" @keypress.enter="fetchCharacterImage" class="search-input" placeholder="Buscar personaje de Harry Potter" />
     <div v-if="characterData" class="character-info">
       <p>{{ characterData.name }}</p>
       <p>Casa: {{ characterData.house }}</p>
-      <p>Edad: {{ 2024 - characterData.yearOfBirth }}</p>
+      <p>Edad: {{ 2024 - characterData.yearOfBirth }} Años</p>
       <img :src="characterData.image" alt="Imagen del personaje" class="character-image" />
     </div>
     <p v-if="error" class="error-message">{{ error }}</p>
@@ -60,6 +61,8 @@ export default {
   border: 1px solid #ccc;
   border-radius: 4px;
   width: 300px;
+  outline-color: #077a2f;
+  text-decoration-line: unset;
 }
 
 .character-info {
